@@ -1,0 +1,17 @@
+version: 0.0
+os: linux
+files:
+  - source: backend
+    destination: /home/ec2-user/backend
+  - source: frontend
+    destination: /home/ec2-user/frontend
+
+hooks:
+  AfterInstall:
+    - location: install_dependencies.sh
+      timeout: 300
+      runas: ec2-user
+  ApplicationStart:
+    - location: start_server.sh
+      timeout: 300
+      runas: ec2-user
